@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mezmur Debter Tewahedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Oswald:wght@300;400;500&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1A2036; --muted:#5C6482; --line:#DADFEA; --navy:#1B2644; --navy-ink:#FFFFFF; --rust:#B4552B; --card:#F3F5FA;
+  --sans:"Oswald",system-ui,sans-serif; --serif:"Spectral",Georgia,serif; --geez:"Noto Serif Ethiopic","Abyssinica SIL",serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1530;--ink:#ECEFF8;--muted:#A3ABCB;--line:#2B3560;--navy:#070B1D;--card:#182047}}
+:root[data-theme="dark"]{--bg:#0F1530;--ink:#ECEFF8;--muted:#A3ABCB;--line:#2B3560;--navy:#070B1D;--card:#182047}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--serif)}
+a{color:inherit}
+:focus-visible{outline:3px solid #E0A93B;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem clamp(1rem,4vw,5rem);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--navy)}
+:root[data-theme="dark"] .logo{color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo{color:var(--ink)}}
+.logo svg{width:52px;height:64px}
+.mark{width:56px;height:56px;border-radius:50%;object-fit:cover;display:block;border:2px solid #C9A24B}
+.wm{font:800 clamp(1.5rem,4vw,2.1rem)/1.15 var(--geez);color:var(--ink)}
+.wm span{display:block;color:var(--rust);font-weight:700}
+.mark.foot{width:88px;height:88px;margin:0 auto}
+.logo b{font:500 1.15rem/1.1 var(--sans);letter-spacing:.03em;display:block}
+.logo span{font:300 .9rem var(--sans);color:var(--muted)}
+nav{display:flex;gap:1.6rem;flex-wrap:wrap}
+nav a{font:300 1.25rem var(--sans);text-decoration:none;padding:.25rem 0;border-bottom:2px solid transparent}
+nav a:hover{border-color:var(--ink)}
+.right{display:flex;gap:1rem;align-items:center}
+.right a,.right button{font:300 1.1rem var(--sans);background:none;border:0;color:var(--ink);cursor:pointer;text-decoration:none}
+.hero{position:relative;min-height:75vh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;background:linear-gradient(rgba(10,10,14,.5),rgba(10,10,14,.5)),url(img/hero.jpg) center 38%/cover no-repeat #111}
+.hero svg.mt{display:none}
+.hero svg.mt{position:absolute;inset:auto 0 0 0;width:100%;height:62%}
+.hero .in{position:relative;padding:3rem 1.25rem;max-width:900px}
+.verse{font:800 clamp(2rem,6.5vw,3.8rem)/1.3 var(--geez);margin:0;text-shadow:0 2px 14px rgba(20,15,50,.55)}
+.vref{font:400 1.5rem var(--sans);letter-spacing:.05em;margin:1rem 0 0}
+section{padding:4rem clamp(1rem,4vw,5rem)}
+h2.sec{font:500 clamp(2rem,5vw,3.2rem)/1.1 var(--sans);text-transform:uppercase;letter-spacing:.04em;text-align:center;margin:0 0 2.5rem}
+.car{position:relative}
+.track{display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.card{flex:0 0 min(80vw,360px);scroll-snap-align:start;text-align:center}
+.thumb{aspect-ratio:16/9;border-radius:4px;display:grid;place-items:center;padding:1rem;color:#fff;font:800 1.7rem/1.2 var(--geez);text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.card h3{font:400 1.35rem/1.3 var(--sans);text-transform:uppercase;letter-spacing:.03em;margin:1rem 0 1.25rem;min-height:3.4em}
+.btn{display:inline-block;background:var(--navy);color:#fff;font:500 1rem var(--serif);padding:1rem 2.4rem;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:var(--rust)}
+.arrow{position:absolute;top:28%;width:48px;height:48px;border-radius:50%;border:0;background:rgba(27,38,68,.85);color:#fff;font-size:1.5rem;cursor:pointer}
+.arrow.l{left:.5rem}.arrow.r{right:.5rem}
+.about{background:var(--card)}
+.about p,.contact p{max-width:62ch;margin:0 auto 1rem;text-align:center}
+footer{background:var(--navy);color:#fff;text-align:center;padding:4rem 1.25rem 3rem}
+footer svg{width:64px;height:78px;color:#fff}
+footer b{display:block;font:500 1.8rem/1.1 var(--sans);letter-spacing:.04em;margin-top:.5rem}
+footer p{color:#B9C1DE;margin:1rem 0 0}
+.song{max-width:760px;margin:0 auto;padding:2rem 1.25rem 4rem}
+.song h1{font:800 clamp(1.8rem,6vw,2.6rem)/1.3 var(--geez);margin:.5rem 0 .25rem}
+.video{aspect-ratio:16/9;width:100%;border:0;border-radius:4px;margin:1.25rem 0}
+.watch{position:relative;display:block;aspect-ratio:16/9;margin:1.25rem 0;border-radius:4px;overflow:hidden;background:#000}
+.watch img{width:100%;height:100%;object-fit:cover;display:block}
+.watch span{position:absolute;left:1rem;bottom:1rem;background:var(--navy);color:#fff;padding:.7rem 1.4rem;font:500 1.1rem var(--sans)}
+.watch:hover span{background:var(--rust)}
+#home[data-page="hymns"] .home-only{display:none}
+#home[data-page="home"] #hymns{display:none}
+.slider{max-width:1100px;margin:0 auto}
+.viewport{overflow:hidden;padding:.5rem 0}
+.slides{display:grid}
+.slide{grid-area:1/1;width:62%;justify-self:center;text-align:center;transition:transform .5s ease,opacity .5s ease}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+.slide:not(.on){cursor:pointer}
+.sthumb{display:block;aspect-ratio:16/9;background:var(--card);overflow:hidden;border-radius:4px}
+.sthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.slide h3{font:400 1.5rem/1.3 var(--sans);text-transform:uppercase;letter-spacing:.03em;margin:1rem 0 1.25rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.6em}
+@media (max-width:640px){.slide{width:70%}.slide h3{font-size:1.1rem}}
+.ctl{display:flex;justify-content:center;align-items:center;gap:1.25rem;margin-top:1.5rem}
+.sbtn{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:transparent;color:var(--ink);font-size:1.3rem;cursor:pointer}
+.sbtn:hover{border-color:var(--rust);color:var(--rust)}
+.dots{display:flex;gap:.6rem}
+.dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:transparent;padding:0;cursor:pointer}
+.dot[aria-current="true"]{background:var(--ink)}
+:root{--sans:"Outfit",system-ui,sans-serif;--accent:#8A2147}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--accent:#F08AA6}}
+:root[data-theme="dark"]{--accent:#F08AA6}
+body{font:400 1.0625rem/1.7 var(--sans)}
+nav a{font-weight:400}
+.logo b{font-weight:600}
+h2.sec{font:700 clamp(2rem,5vw,3.1rem)/1.15 var(--sans);text-transform:none;letter-spacing:-.01em;margin:0 0 1rem}
+.intro{max-width:58ch;margin:0 auto 2.5rem;text-align:center;color:var(--muted)}
+.btn{background:transparent;color:var(--accent);border:3px solid var(--accent);font:700 .95rem var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:.95rem 2.2rem}
+.btn:hover{background:var(--accent);color:var(--bg)}
+section{position:relative;overflow:hidden}
+section>*{position:relative;z-index:1}
+section::before,section::after{content:"";position:absolute;border:2px solid var(--line);border-radius:50%;pointer-events:none}
+section::before{width:280px;height:280px;left:-90px;bottom:-70px}
+section::after{width:360px;height:360px;right:-130px;top:30px}
+.hero{clip-path:polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);padding-bottom:6vw}
+.about{clip-path:polygon(0 5vw,100% 0,100% calc(100% - 5vw),0 100%);padding:calc(4rem + 5vw) clamp(1rem,4vw,5rem);margin:-2vw 0}
+footer{clip-path:polygon(0 5vw,100% 0,100% 100%,0 100%);padding-top:calc(4rem + 5vw);margin-top:-3vw}
+.icons{display:flex;justify-content:center;gap:.9rem;margin:0 0 1.25rem}
+.slot{width:44px;height:44px;border:2px dashed var(--line);border-radius:10px;display:grid;place-items:center}
+.slot.filled{border:0}
+.slot img{width:100%;height:100%;object-fit:contain}
+.art{position:absolute;top:1.25rem;width:clamp(150px,18vw,230px);height:auto;z-index:0;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse at center,#000 50%,transparent 76%);mask-image:radial-gradient(ellipse at center,#000 50%,transparent 76%)}
+.art.l{left:clamp(.5rem,3vw,4rem)}
+.art.r{right:clamp(.5rem,3vw,4rem)}
+.about .art{top:calc(5vw + 1rem)}
+section::after{display:none}
+footer{position:relative;overflow:hidden}
+footer>*:not(.art){position:relative;z-index:1}
+footer .art{top:auto;bottom:0}
+@media (max-width:900px){.art{position:static;display:block;margin:0 auto 1.25rem;width:150px}footer .art{margin-top:1.5rem}}
+section::before{display:none}
+.art{width:clamp(170px,17vw,260px);height:auto;aspect-ratio:1;object-fit:cover;object-position:50% 18%;border-radius:50%;outline:2px solid var(--line);outline-offset:12px;-webkit-mask-image:none;mask-image:none;background:var(--card);top:2rem;bottom:auto}
+.art.l{left:-30px;right:auto}
+.art.r{right:-30px;left:auto}
+.about .art{top:auto;bottom:calc(5vw + 1rem)}
+footer .art{top:auto;bottom:-50px}
+@media (max-width:900px){.art,.about .art,footer .art{position:static;display:block;margin:1rem auto 1.5rem;width:150px}}
+section::before,section::after{display:block}
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:2.25rem 2.5rem;max-width:1000px;margin:0 auto}
+.badge{display:flex;flex-direction:column;align-items:center;gap:1.1rem;width:150px;text-align:center;text-decoration:none;color:var(--ink);font-weight:600;line-height:1.25}
+.badge img{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:50% 15%;outline:2px solid var(--line);outline-offset:8px;background:var(--card);transition:outline-color .2s,transform .2s}
+.badge:hover img,.badge:focus-visible img{outline-color:var(--accent);transform:scale(1.04)}
+.badge:hover span{color:var(--accent)}
+.topicbar{text-align:center;margin:-1rem 0 1.5rem;color:var(--muted)}
+.topicbar a{color:var(--accent);font-weight:600}
+@media (max-width:640px){.badge{width:120px}.badge img{width:120px;height:120px}}
+.group{text-align:center;font:600 1rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:2.5rem 0 1.5rem}
+.badge{width:160px}
+.badge img{width:160px;height:160px;object-position:50% 50%}
+.badge small{font-weight:400;font-size:.9rem;color:var(--muted)}
+@media (max-width:640px){.badge{width:130px}.badge img{width:130px;height:130px}}
+.ring{position:relative;height:340px;max-width:1100px;margin:0 auto}
+.ring .badge{position:absolute;left:50%;top:30px;margin-left:-80px;will-change:transform,opacity}
+.ring .badge span,.ring .badge small{opacity:var(--lab,1);transition:opacity .3s}
+@media (max-width:640px){.ring{height:300px}.ring .badge{margin-left:-65px}}
+.ring{height:460px;max-width:none;margin:0 calc(-1*clamp(1rem,4vw,5rem))}
+.ring .badge{width:190px;margin-left:-95px;top:40px}
+.ring .badge img{width:190px;height:190px}
+@media (max-width:640px){.ring{height:380px}.ring .badge{width:150px;margin-left:-75px}.ring .badge img{width:150px;height:150px}}
+.novideo{padding:1rem;border:1px dashed var(--line);color:var(--muted);margin:1.25rem 0}
+.lyrics{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1.5rem 1.5rem .5rem}
+.lyrics p{font:400 1.3rem/2 var(--geez);margin:0 0 1.25rem;white-space:pre-line}
+.lyrics p.ch{font-weight:700;color:var(--rust)}
+.muted{color:var(--muted)}
+.tools{display:flex;gap:.6rem;flex-wrap:wrap;max-width:1100px;margin:0 auto 2rem}
+.tools input{flex:1 1 220px;font:inherit;padding:.7rem .9rem;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+.chip{font:400 1rem var(--sans);padding:.6rem 1.1rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2rem 1.5rem;max-width:1200px;margin:0 auto}
+.grid .thumb{padding:0;aspect-ratio:16/9;background:var(--card);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.grid .card h3{font-size:1.1rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:0;height:4.3em}
+.none{text-align:center;color:var(--muted);grid-column:1/-1}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="harp" viewBox="0 0 60 74" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M8 6c-4 22-2 44 14 56M8 6h30c10 4 14 14 8 24-5 8-14 12-24 32"/><path d="M18 14v34M26 12v30M34 12v22M42 14v14" stroke-width="2"/></symbol></svg>
+
+<div id="home" data-page="home">
+<header class="top">
+  <a class="logo" href="#"><svg><use href="#harp"/></svg><div><b>Mezmur Debter</b><span>Tewahedo</span></div></a>
+  <nav aria-label="Main"><a href="#">Home</a><a href="#hymns">Hymns</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  <div class="right"><a href="https://www.youtube.com/@mezmurdebterzetewahedo" target="_blank" rel="noopener">YouTube</a><button id="theme" type="button">Light / dark</button></div>
+</header>
+
+<div class="hero home-only">
+  <svg class="mt" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true"><path d="M0 400V250l140-80 90 60 150-120 120 110 130-90 170 130 110-70 160 90 130-60v180z" fill="#2A2850"/><path d="M0 400V320l180-70 120 50 170-80 140 70 190-90 160 80 240-60v180z" fill="#171A3A"/></svg>
+  <div class="in"><p class="verse" lang="am">ይህችን መዝሙር ለእናንተ ጻፉ</p><p class="vref">Deuteronomy 31:19</p></div>
+</div>
+
+<section id="saints" class="home-only">
+  <h2 class="sec">Browse by saint and feast</h2>
+  <p class="intro">Tap a painting to see every hymn for it. Tap a side painting to bring it to the front.</p>
+  <div class="ring" id="ring" aria-roledescription="carousel" aria-label="Saints and feasts"><a class="badge" data-t="trinity" href="#saint-trinity"><img src="img/trinity.jpg" alt=""><span>Holy Trinity</span><small></small></a><a class="badge" data-t="medhane" href="#saint-medhane"><img src="img/medhane.jpg" alt=""><span>Medhane Alem</span><small></small></a><a class="badge" data-t="mary" href="#saint-mary"><img src="img/mary.jpg" alt=""><span>St. Mary</span><small></small></a><a class="badge" data-t="michael" href="#saint-michael"><img src="img/michael.jpg" alt=""><span>Archangel Michael</span><small></small></a><a class="badge" data-t="gabriel" href="#saint-gabriel"><img src="img/gabriel.jpg" alt=""><span>Archangel Gabriel</span><small></small></a><a class="badge" data-t="raphael" href="#saint-raphael"><img src="img/raphael.jpg" alt=""><span>Archangel Raphael</span><small></small></a><a class="badge" data-t="george" href="#saint-george"><img src="img/george.jpg" alt=""><span>St. George</span><small></small></a><a class="badge" data-t="peterpaul" href="#saint-peterpaul"><img src="img/peterpaul.jpg" alt=""><span>Peter and Paul</span><small></small></a><a class="badge" data-t="tekle" href="#saint-tekle"><img src="img/tekle.jpg" alt=""><span>Abune Tekle Haymanot</span><small></small></a><a class="badge" data-t="gebre" href="#saint-gebre"><img src="img/gebre.jpg" alt=""><span>Abune Gebre Menfes Kidus</span><small></small></a><a class="badge" data-t="newyear" href="#saint-newyear"><img src="img/newyear.jpg" alt=""><span>New Year</span><small></small></a><a class="badge" data-t="meskel" href="#saint-meskel"><img src="img/meskel.jpg" alt=""><span>Meskel (Cross)</span><small></small></a><a class="badge" data-t="lidet" href="#saint-lidet"><img src="img/lidet.jpg" alt=""><span>Christmas (Nativity)</span><small></small></a><a class="badge" data-t="timket" href="#saint-timket"><img src="img/timket.jpg" alt=""><span>Timket (Baptism)</span><small></small></a><a class="badge" data-t="hosanna" href="#saint-hosanna"><img src="img/hosanna.jpg" alt=""><span>Palm Sunday</span><small></small></a><a class="badge" data-t="passion" href="#saint-passion"><img src="img/passion.jpg" alt=""><span>Holy Week (Crucifixion)</span><small></small></a><a class="badge" data-t="tinsae" href="#saint-tinsae"><img src="img/tinsae.jpg" alt=""><span>Easter (Resurrection)</span><small></small></a><a class="badge" data-t="ascension" href="#saint-ascension"><img src="img/ascension.jpg" alt=""><span>Ascension</span><small></small></a><a class="badge" data-t="pentecost" href="#saint-pentecost"><img src="img/pentecost.jpg" alt=""><span>Pentecost</span><small></small></a><a class="badge" data-t="transfig" href="#saint-transfig"><img src="img/transfig.jpg" alt=""><span>Transfiguration (Debre Tabor)</span><small></small></a></div>
+  <div class="ctl"><button class="sbtn" id="rprev" type="button" aria-label="Previous painting">←</button><button class="sbtn" id="rnext" type="button" aria-label="Next painting">→</button></div>
+</section>
+
+<section id="latest" class="home-only">
+  <h2 class="sec">New videos</h2>
+  <p class="intro">The newest hymns from the channel. Tap a slide to listen and sing along.</p>
+  <div class="slider" aria-roledescription="carousel" aria-label="Newest videos">
+    <div class="viewport"><div class="slides" id="slides"></div></div>
+    <div class="ctl"><button class="sbtn" id="sprev" type="button" aria-label="Previous video">←</button><div class="dots" id="dots"></div><button class="sbtn" id="snext" type="button" aria-label="Next video">→</button></div>
+  </div>
+  <p style="text-align:center;margin-top:2rem"><a class="btn" href="#hymns">See all hymns</a></p>
+</section>
+
+<section id="hymns">
+  <h2 class="sec">Hymns</h2>
+  <p class="intro">Every hymn and collection on the channel. Search by name, or filter by collections and single hymns.</p>
+  <p class="topicbar" id="topicbar" hidden></p>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Search hymns" aria-label="Search hymns">
+    <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+    <button class="chip" type="button" data-f="col" aria-pressed="false">Collections</button>
+    <button class="chip" type="button" data-f="one" aria-pressed="false">Single hymns</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="about" class="about home-only">
+  <h2 class="sec">About</h2>
+  <p>Mezmur Debter Tewahedo shares Ethiopian and Eritrean Orthodox Tewahedo hymns. Each hymn here has its video and its words written out, so you can sing along.</p>
+</section>
+
+<section id="contact" class="contact home-only">
+  <h2 class="sec">Contact</h2>
+  <p>Questions or corrections to a hymn’s words? Send a message through <a href="https://www.youtube.com/@mezmurdebterzetewahedo" target="_blank" rel="noopener">the YouTube channel</a>.</p>
+</section>
+
+<footer><svg><use href="#harp"/></svg><b>Mezmur Debter Tewahedo</b><p lang="am">ይህችን መዝሙር ለእናንተ ጻፉ</p></footer>
+</div>
+
+<div id="detail" hidden></div>
+
+<script>
+// Add hymns here. videoId = the part after v= in the YouTube link. Start a stanza with "*" for a chorus.
+let SONGS = [];
+Promise.all([fetch("videos.json").then(r => r.json()), fetch("lyrics.json").then(r => r.json()).catch(() => ({}))]).then(([vids,ly]) => {
+  SONGS = vids.map((v,i) => ({ id:"v"+v.id, title:v.title || ("Hymn "+(i+1)), lang:v.dur || "", videoId:v.id,
+    thumb:"https://i.ytimg.com/vi/"+v.id+"/mqdefault.jpg", big:"https://i.ytimg.com/vi/"+v.id+"/maxresdefault.jpg",
+    col:/ስብስብ|collection/i.test(v.title || ""), stanzas:ly[v.id] || ["Lyrics coming soon."] }));
+  start();
+});
+function start(){
+const $ = id => document.getElementById(id);
+const el = (t,c,x) => { const n=document.createElement(t); if(c) n.className=c; if(x!==undefined) n.textContent=x; return n; };
+
+const TOPICS = {
+  trinity:["the Holy Trinity",/silase|trinity|ሥላሴ|ሥሉስ|abraham|አብርሃም/i],
+  medhane:["God and Christ",/medhan|መድኃ|egziabher|እግዚአብሔር|eyesus|ኢየሱስ|jesus|kristos|christ|ክርስቶስ|lord|god|saviou?r|emmanuel|አማኑኤል|redeemer|አምላክ|ጌታ/i],
+  mary:["St. Mary",/mary|mariam|ማርያም|እመቤታችን|እመቤቴ|emebet|ድንግል|dingil|virgin|ኪዳነ ምሕረት|kidane|covenant of mercy|ልደታ|lideta|በአታ|beata|ፍልሰታ|filseta|ጽጌ|tsige|flowers/i],
+  michael:["Archangel Michael",/michael|ሚካኤል/i],
+  gabriel:["Archangel Gabriel",/gebriel|gabriel|ገብርኤል/i],
+  raphael:["Archangel Raphael",/raphael|rufael|ሩፋኤል/i],
+  george:["St. George",/giorgis|george|ጊዮርጊስ/i],
+  peterpaul:["Saints Peter and Paul",/petros|pawlos|peter|paul|ጴጥሮስ|ጳውሎስ/i],
+  tekle:["Abune Tekle Haymanot",/tekle|ተክለ/i],
+  gebre:["Abune Gebre Menfes Kidus",/gebre menfes|ገብረ መንፈስ/i],
+  meskel:["Meskel, the Feast of the Cross",/meskel|መስቀል|cross|demera|ደመራ/i],
+  timket:["Timket, Epiphany",/timket|ጥምቀት|ከተራ|ketera|epiphany|baptiz|holy waters|jordan|ዮርዳኖስ/i],
+  lidet:["Christmas",/lidet(?!a)|ልደት|ገና|genna|christmas|nativity|\bborn\b|birth|wise men|ጥበብ ሰዎች/i],
+  tinsae:["Easter, the Resurrection",/tinsae|ትንሣኤ|resurrect|easter|risen/i],
+  hosanna:["Palm Sunday",/hosanna|ሆሣዕና|ሆሳዕና|palm/i],
+  passion:["Holy Week and the Crucifixion",/hamamat|ሕማማት|ስቅለት|crucif|golgotha|ቀራንዮ|nikodimos|ኒቆዲሞስ|ይሁዳ|setuh|ወንበዴ|wenbed|passion/i],
+  ascension:["the Ascension",/erget|ዕርገት|ascen|አርገ/i],
+  transfig:["the Transfiguration",/tabor|ታቦር|buhe|ቡሄ|transfig/i],
+  pentecost:["Pentecost",/peraklitos|ጰራቅሊጦስ|pentecost|ጰንጠቆስጤ/i],
+  newyear:["the New Year",/addis amet|new year|ዐውደ ዓመት|abebayehosh|አበባየሆሽ|አዲስ አመት|enkutatash|እንቁጣጣሽ/i]
+};
+let topic = null;
+let filt = "all", term = "";
+document.querySelectorAll(".badge[data-t]").forEach(b => {
+  const n = SONGS.filter(s => TOPICS[b.dataset.t][1].test(s.title)).length;
+  b.querySelector("small").textContent = n+" hymn"+(n===1?"":"s"); b.hidden = n===0;
+});
+(function(){
+  const ring = $("ring"), items = [...ring.children].filter(b => !b.hidden), N = items.length, step = 2*Math.PI/N;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let angle = 0, target = 0, last = performance.now(), paused = false;
+  function layout(){
+    const r = ring.clientWidth*(ring.clientWidth<640 ? .34 : .44);
+    items.forEach((b,i) => {
+      const th = angle + i*step, x = Math.sin(th)*r, z = Math.cos(th), k = (z+1)/2;
+      b.style.transform = `translateX(${x}px) translateY(${-(1-z)*36}px) scale(${.55+.45*k})`;
+      b.style.opacity = .35+.65*k; b.style.zIndex = Math.round(k*100);
+      b.style.setProperty("--lab", z>.75 ? 1 : 0);
+    });
+  }
+  items.forEach((b,i) => b.addEventListener("click", e => {
+    let d = (((target+i*step+Math.PI)%(2*Math.PI))+2*Math.PI)%(2*Math.PI)-Math.PI;
+    if(Math.abs(d) > .35){ e.preventDefault(); e.stopPropagation(); target -= d; }
+  }, true));
+  $("rprev").onclick = () => { target -= step; }; $("rnext").onclick = () => { target += step; };
+  ring.onmouseenter = ring.onfocusin = () => { paused = true; }; ring.onmouseleave = ring.onfocusout = () => { paused = false; };
+  function frame(t){
+    const dt = Math.min((t-last)/1000,.1); last = t;
+    if(ring.offsetParent){ if(!paused && !reduce) target += .15*dt; angle += (target-angle)*Math.min(1,dt*8); layout(); }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+function draw(){
+  const g = $("grid"); g.replaceChildren();
+  const hits = SONGS.filter(s => (filt==="all" || (filt==="col")===s.col) && s.title.toLowerCase().includes(term) && (!topic || TOPICS[topic][1].test(s.title)));
+  if(!hits.length){ g.append(el("p","none","No hymns match that search. Try a different word.")); return; }
+  hits.forEach(s => {
+    const c = el("div","card"), th = el("div","thumb");
+    if(s.thumb){ const im = el("img"); im.src = s.thumb; im.alt = ""; im.loading = "lazy"; th.append(im); }
+    const a = el("a","btn","Listen"); a.href = "#"+s.id;
+    c.append(th, el("h3","",s.title), a); g.append(c);
+  });
+}
+$("q").oninput = e => { term = e.target.value.trim().toLowerCase(); draw(); };
+document.querySelectorAll(".chip").forEach(b => b.onclick = () => {
+  filt = b.dataset.f; document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x===b));
+  draw();
+});
+draw();
+$("theme").onclick = () => {
+  const r=document.documentElement, dark = r.dataset.theme ? r.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = dark ? "light" : "dark";
+};
+
+function buildSlider(){
+  const latest = SONGS.slice(0,4), box = $("slides"), dots = $("dots"), N = latest.length; let i = 0, timer; clearInterval(window.__st); box.replaceChildren(); dots.replaceChildren();
+  latest.forEach((s,n) => {
+    const sl = el("div","slide"), a = el("a","sthumb"); a.href = "#"+s.id; a.setAttribute("aria-label",s.title);
+    const im = el("img"); im.src = s.big; im.alt = ""; im.onerror = () => { im.onerror = null; im.src = s.thumb; }; a.append(im);
+    const b = el("a","btn","Listen"); b.href = "#"+s.id;
+    sl.append(a, el("h3","",s.title), b); box.append(sl);
+    sl.addEventListener("click", e => { if(n!==i){ e.preventDefault(); e.stopPropagation(); go(n); play(); } }, true);
+    const d = el("button","dot"); d.type = "button"; d.setAttribute("aria-label","Show video "+(n+1)); d.onclick = () => { go(n); play(); }; dots.append(d);
+  });
+  function go(n){
+    i = (n+N)%N; const h = Math.floor(N/2);
+    [...box.children].forEach((c,k) => {
+      const off = ((k-i+N+h)%N)-h;
+      c.style.transform = `translateX(${off*104}%) scale(${off===0?1:.88})`;
+      c.style.opacity = off===0 ? 1 : Math.abs(off)===1 ? .5 : 0;
+      c.style.zIndex = off===0 ? 2 : 1; c.classList.toggle("on",off===0); c.setAttribute("aria-hidden",off!==0);
+      c.querySelectorAll("a").forEach(a => a.tabIndex = off===0 ? 0 : -1);
+    });
+    [...dots.children].forEach((d,k) => d.setAttribute("aria-current",k===i));
+  }
+  function play(){ clearInterval(timer); if(!matchMedia("(prefers-reduced-motion: reduce)").matches) timer = window.__st = setInterval(() => go(i+1),6000); }
+  $("sprev").onclick = () => { go(i-1); play(); }; $("snext").onclick = () => { go(i+1); play(); };
+  const w = $("latest"); w.onmouseenter = () => clearInterval(timer); w.onmouseleave = play; w.onfocusin = () => clearInterval(timer); w.onfocusout = play;
+  go(0); play();
+}
+buildSlider();
+
+function route(){
+  const h = location.hash.slice(1), s = SONGS.find(x=>x.id===h), d = $("detail");
+  if(!s){
+    d.hidden = true; $("home").hidden = false; document.title = "Mezmur Debter Tewahedo";
+    const tm = /^saint-(\w+)$/.exec(h); topic = tm && TOPICS[tm[1]] ? tm[1] : null;
+    $("home").dataset.page = (h==="hymns" || topic) ? "hymns" : "home";
+    const tb = $("topicbar"); tb.hidden = !topic; tb.replaceChildren();
+    if(topic){ const x = el("a","","Show all hymns"); x.href = "#hymns"; tb.append("Showing hymns for "+TOPICS[topic][0]+". ", x); }
+    draw();
+    const t = (h==="about"||h==="contact") && document.getElementById(h); if(t) t.scrollIntoView(); else window.scrollTo(0,0);
+    return;
+  }
+  $("home").hidden = true; d.hidden = false; d.replaceChildren();
+  const box = el("article","song"), back = el("a","","Back to all hymns"); back.href = "#hymns";
+  box.append(back, el("h1","",s.title), el("div","muted",s.lang));
+  if(s.videoId){
+    const f = el("iframe","video"); f.src = "https://www.youtube-nocookie.com/embed/"+encodeURIComponent(s.videoId);
+    f.title = s.title; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true; f.referrerPolicy = "strict-origin-when-cross-origin"; box.append(f);
+    const yl = el("a","","Open on YouTube"); yl.href = "https://www.youtube.com/watch?v="+encodeURIComponent(s.videoId); yl.target = "_blank"; yl.rel = "noopener"; box.append(yl);
+  } else {
+    const n = el("div","novideo","The video for this hymn will be added soon. "), l = el("a","","Find this video on YouTube");
+    l.href="https://www.youtube.com/@mezmurdebterzetewahedo/search?query="+encodeURIComponent(s.title.split("||")[0].trim()); l.target="_blank"; l.rel="noopener"; n.append(l); box.append(n);
+  }
+  const ly = el("div","lyrics");
+  s.stanzas.forEach(t => { const c=t.startsWith("*"); ly.append(el("p",c?"ch":"",c?t.slice(1):t)); });
+  box.append(ly); d.append(box); document.title = s.title+" · Mezmur Debter Tewahedo"; window.scrollTo(0,0);
+}
+addEventListener("hashchange",route); route();
+}
+</script>
+</body>
+</html>
