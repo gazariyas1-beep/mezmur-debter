@@ -147,9 +147,22 @@ section::before,section::after{display:block}
 .ring .badge img{width:190px;height:190px}
 @media (max-width:640px){.ring{height:380px}.ring .badge{width:150px;margin-left:-75px}.ring .badge img{width:150px;height:150px}}
 .novideo{padding:1rem;border:1px dashed var(--line);color:var(--muted);margin:1.25rem 0}
-.lyrics{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1.5rem 1.5rem .5rem}
-.lyrics p{font:400 1.3rem/2 var(--geez);margin:0 0 1.25rem;white-space:pre-line}
-.lyrics p.ch{font-weight:700;color:var(--rust)}
+.lyrics{background:var(--card);border:1px solid var(--line);border-radius:4px}
+.lyrics{text-align:center;padding:2rem 1.5rem 1.5rem}
+.lyrics .by{color:var(--muted);font-size:.95rem;margin:0 0 1.25rem}
+.tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;margin:0 0 1.75rem}
+.tab{font:600 .9rem var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1.1rem;border:2px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.stanza{margin:0 0 1.75rem}
+.stanza p{font:400 1.3rem/1.9 var(--geez);margin:0}
+.pane[lang],.pane{--gap:1}
+.stanza.ch{padding:.25rem 0;border-top:2px solid var(--line);border-bottom:2px solid var(--line)}
+.stanza.ch p{color:var(--accent);font-weight:700}
+.again{font:600 .8rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:-.75rem 0 1.75rem}
+sup.rep{font:600 .6em var(--sans);color:var(--muted);margin-left:.25em}
+.credits{margin-top:2.25rem;padding-top:1.25rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.credits p{margin:.15rem 0;font-family:var(--geez)}
+.soon{color:var(--muted)}
 .muted{color:var(--muted)}
 .tools{display:flex;gap:.6rem;flex-wrap:wrap;max-width:1100px;margin:0 auto 2rem}
 .tools input{flex:1 1 220px;font:inherit;padding:.7rem .9rem;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
@@ -229,7 +242,7 @@ let SONGS = [];
 Promise.all([fetch("videos.json").then(r => r.json()), fetch("lyrics.json").then(r => r.json()).catch(() => ({}))]).then(([vids,ly]) => {
   SONGS = vids.map((v,i) => ({ id:"v"+v.id, title:v.title || ("Hymn "+(i+1)), lang:v.dur || "", videoId:v.id,
     thumb:"https://i.ytimg.com/vi/"+v.id+"/mqdefault.jpg", big:"https://i.ytimg.com/vi/"+v.id+"/maxresdefault.jpg",
-    col:/ስብስብ|collection/i.test(v.title || ""), stanzas:ly[v.id] || ["Lyrics coming soon."] }));
+    col:/ስብስብ|collection/i.test(v.title || ""), lyr:ly[v.id] || null }));
   start();
 });
 function start(){
@@ -363,8 +376,26 @@ function route(){
     const n = el("div","novideo","The video for this hymn will be added soon. "), l = el("a","","Find this video on YouTube");
     l.href="https://www.youtube.com/@mezmurdebterzetewahedo/search?query="+encodeURIComponent(s.title.split("||")[0].trim()); l.target="_blank"; l.rel="noopener"; n.append(l); box.append(n);
   }
-  const ly = el("div","lyrics");
-  s.stanzas.forEach(t => { const c=t.startsWith("*"); ly.append(el("p",c?"ch":"",c?t.slice(1):t)); });
+  const ly = el("div","lyrics"), L = s.lyr;
+  const rep = (p,t) => t.split(/(×\d+)/).forEach(x => /^×\d+$/.test(x) ? p.append(el("sup","rep",x)) : x && p.append(document.createTextNode(x)));
+  const draw = bs => { const w = el("div","pane"); bs.forEach(b => {
+    if(b.t==="a"){ w.append(el("p","again","↻ Repeat the chorus"+(b.x?" ×"+b.x:""))); return; }
+    const st = el("div","stanza"+(b.t==="c"?" ch":"")); b.l.forEach(l => { const p = el("p"); rep(p,l); st.append(p); }); w.append(st); }); return w; };
+  if(!L){ ly.append(el("p","soon","Lyrics coming soon.")); }
+  else {
+    const NAMES = { orig:"Original", meaning:"Meaning", tr:"Transliteration", en:"English" }, keys = Object.keys(L.g);
+    if(L.by) ly.append(el("p","by",L.by));
+    const panes = {}, bar = el("div","tabs"); bar.setAttribute("role","tablist");
+    keys.forEach((k,i) => {
+      const t = el("button","tab",NAMES[k]||k); t.type = "button"; t.setAttribute("role","tab"); t.setAttribute("aria-selected", i===0);
+      const pn = draw(L.g[k]); pn.hidden = i!==0; panes[k] = pn;
+      t.onclick = () => { keys.forEach(j => { panes[j].hidden = j!==k; }); [...bar.children].forEach(x => x.setAttribute("aria-selected", x===t)); };
+      bar.append(t);
+    });
+    if(keys.length > 1) ly.append(bar);
+    keys.forEach(k => ly.append(panes[k]));
+    if(L.credits){ const c = el("div","credits"); L.credits.forEach(b => b.l.forEach(l => c.append(el("p","",l)))); ly.append(c); }
+  }
   box.append(ly); d.append(box); document.title = s.title+" · Mezmur Debter Tewahedo"; window.scrollTo(0,0);
 }
 addEventListener("hashchange",route); route();
