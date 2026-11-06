@@ -1,0 +1,16 @@
+{
+  "appId": "com.mezmurdebter.app",
+  "appName": "Mezmur Debter",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    },
+    "LocalNotifications": {
+      "iconColor": "#1B2644"
+    }
+  }
+}
