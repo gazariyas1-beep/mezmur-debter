@@ -25,13 +25,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;700;800&family=Outfit:wght@300;400;500;600;700&display=swap"></noscript>
 <style>
-:root{--bg:#F4F5F9;--surface:#FFFFFF;--ink:#1A2036;--muted:#5C6482;--line:#E1E5EF;--navy:#1B2644;--rust:#B4552B;--accent:#B4552B;--gold:#C9A24B;--chip:#E8EBF4;--pill:rgba(180,85,43,.14);--tabh:68px;
+:root{--bg:#F4F5F9;--surface:#FFFFFF;--ink:#1A2036;--muted:#5C6482;--line:#E1E5EF;--navy:#1B2644;--rust:#B4552B;--accent:#B4552B;--gold:#C9A24B;--chip:#E8EBF4;--pill:rgba(180,85,43,.14);--glow:radial-gradient(120% 55% at 50% 0%,rgba(201,162,75,.20),rgba(244,245,249,0) 70%);--bgtop:#FAF6EC;--bgbot:#F2F4F9;--bga:rgba(244,245,249,.88);--tabh:68px;
   --ui:"Outfit","Noto Serif Ethiopic","Abyssinica SIL",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--geez:"Noto Serif Ethiopic","Abyssinica SIL",serif;color-scheme:light dark}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1026;--surface:#151C3F;--ink:#ECEFF8;--muted:#A3ABCB;--line:#273055;--navy:#070B1D;--accent:#E0A93B;--chip:#1E2750;--pill:rgba(224,169,59,.2)}}
-:root[data-theme="dark"]{--bg:#0B1026;--surface:#151C3F;--ink:#ECEFF8;--muted:#A3ABCB;--line:#273055;--navy:#070B1D;--accent:#E0A93B;--chip:#1E2750;--pill:rgba(224,169,59,.2)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1026;--surface:#151C3F;--ink:#ECEFF8;--muted:#A3ABCB;--line:#273055;--navy:#070B1D;--accent:#E0A93B;--chip:#1E2750;--pill:rgba(224,169,59,.2);--glow:radial-gradient(120% 55% at 50% 0%,rgba(224,169,59,.20),rgba(11,16,38,0) 70%);--bgtop:#0E1533;--bgbot:#080C1F;--bga:rgba(11,16,38,.88)}}
+:root[data-theme="dark"]{--bg:#0B1026;--surface:#151C3F;--ink:#ECEFF8;--muted:#A3ABCB;--line:#273055;--navy:#070B1D;--accent:#E0A93B;--chip:#1E2750;--pill:rgba(224,169,59,.2);--glow:radial-gradient(120% 55% at 50% 0%,rgba(224,169,59,.20),rgba(11,16,38,0) 70%);--bgtop:#0E1533;--bgbot:#080C1F;--bga:rgba(11,16,38,.88)}
 *,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 var(--ui);overscroll-behavior-y:none}
+/* soft gold glow behind the app; the lyrics page stays flat so reading is easy */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--glow),linear-gradient(var(--bgtop),var(--bgbot))}
+body[data-route="play"]::before{display:none}
 a{color:inherit}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid #E0A93B;outline-offset:2px}
@@ -99,7 +102,7 @@ h2.sec a{font-size:.88rem;font-weight:500;color:var(--accent);text-decoration:no
 .tile small{display:block;padding:2px 12px 12px;color:var(--muted);font-size:.82rem}
 
 /* search + chips */
-.tools{position:sticky;top:calc(56px + env(safe-area-inset-top));z-index:10;background:var(--bg);margin:-14px -14px 4px;padding:12px 14px 8px}
+.tools{position:sticky;top:calc(56px + env(safe-area-inset-top));z-index:10;background:var(--bga);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);margin:-14px -14px 4px;padding:12px 14px 8px}
 .search{width:100%;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 14px;font:inherit;font-size:16px;-webkit-appearance:none;appearance:none}
 .chips{display:flex;gap:8px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}

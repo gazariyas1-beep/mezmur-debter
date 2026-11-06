@@ -1,7 +1,7 @@
 // New-hymn alerts: lets OneSignal show notifications even when the app is closed
 try { importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js'); } catch (e) {}
 
-const CACHE = 'mezmur-app-v8';
+const CACHE = 'mezmur-app-v9';
 const ROOT = new URL('./', self.registration.scope).href;
 const SHELL = ['./', 'index.html', 'app.js', 'data.js', 'config.js', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png'];
 
